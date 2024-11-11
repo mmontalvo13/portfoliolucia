@@ -1,0 +1,110 @@
+*{
+    margin: 0;
+    padding: 0  ;
+    font-family: "Inter", sans-serif;
+}
+
+/* START HERO BANNER */
+.hero-banner{
+    background-color: #2338AF;
+    height: 100vh;
+}
+
+.hero-banner h1{
+    background-color: #2338AF;
+    max-width: 10px;
+    padding: 15px;
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+.hero-banner .main_logo{
+    width: 100vw;
+    max-width: 500px;
+}
+
+.hero-banner .main_logo img{
+    width: 100%;
+}
+/* END HERO BANNER */
+
+/* START INTRO */
+.intro-section{
+    height: 70vh;
+    background: rgb(35,56,175);
+    background: linear-gradient(180deg, rgba(35,56,175,1) 0%, rgba(254,168,153,1) 50%, rgba(255,255,255,1) 100%);
+    padding: 5vh 15vw 0 10vw;
+}
+
+.intro-section h2{
+    font-family: "Inter", sans-serif;
+    font-weight: 200;
+    color: white;
+    text-transform: uppercase;
+    font-size: 4rem;
+}
+
+.intro-section p{
+    font-family: "Inter", sans-serif;
+    font-weight: 200;
+    color: white;
+    font-size: 1rem;
+}
+/* END INTRO */
+
+/* START WORKS */
+.works-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10vh;
+}
+
+.works-section h2{
+    font-family: "Inter", sans-serif;
+    font-weight: 200;
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    font-size: 4rem;
+    align-self: flex-start;
+    padding: 0 15vw 0 10vw;
+}
+
+.card{
+    width: 80vw;
+    border: none;
+    border-top: 1px solid black;
+    padding: 5vh 0 10vh 0;
+}
+
+.card h1{
+    font-size: large;
+    text-transform: uppercase;
+    font-weight:700;
+}
+
+.card h2{
+    font-size: medium;
+    text-transform: uppercase;
+    padding: 0;
+}
+
+.card .works-section-thumbnail{
+    display: flex;
+    max-width: 500px;
+}
+
+.card .works-section-thumbnail img{
+width: 100%;
+}
+
+.card p{
+    font-size: small;
+    padding: 2vh 0 0 0;
+    font-weight: 300;
+}
+/* END WORKS*/
