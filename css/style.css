@@ -14,6 +14,7 @@
 .hero-banner{
     background-color: #2338AF;
     height: 100vh;
+    width: 100vw;
 }
 
 .hero-banner h1{
@@ -25,12 +26,14 @@
     font-weight: 700;
     color: white;
     text-transform: uppercase;
-    font-size: 1rem;
+    font-size: 0.5rem;
 }
 
 .hero-banner .main_logo{
+    margin-top: 19vh;
     width: 100vw;
     max-width: 500px;
+    justify-self: center;
 }
 
 .hero-banner .main_logo img{
@@ -42,7 +45,7 @@
 .intro-section{
     height: 100vh;
     background: rgb(35,56,175);
-    background: linear-gradient(180deg, rgba(35,56,175,1) 0%, rgba(254,168,153,1) 70%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(180deg, rgba(35,56,175,1) 0%, rgba(254,168,153,1) 75%, rgba(255,255,255,1) 100%);
     padding: 5vh 15vw 0 10vw;
 }
 
