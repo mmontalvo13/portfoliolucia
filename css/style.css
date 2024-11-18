@@ -78,7 +78,7 @@
     font-weight: 200;
     color: rgb(0, 0, 0);
     text-transform: uppercase;
-    font-size: 4rem;
+    font-size: 3rem;
     align-self: flex-start;
     padding: 0 15vw 0 10vw;
 }
@@ -88,6 +88,7 @@
     border: none;
     border-top: 1px solid black;
     padding: 5vh 0 10vh 0;
+    border-radius: 0;
 }
 
 .card h1{
@@ -102,13 +103,9 @@
     padding: 0;
 }
 
-.card .works-section-thumbnail{
-    display: flex;
-    max-width: 500px;
-}
-
-.card .works-section-thumbnail img{
-width: 100%;
+.card .preview-img {
+    aspect-ratio: 1 / 1; /* Mantiene una relación 1:1 */
+    object-fit: cover; /* Recorta la imagen para ajustarse al contenedor */
 }
 
 .card p{
@@ -118,6 +115,34 @@ width: 100%;
 }
 /* END WORKS*/
 
+/* START CONTACTO */
+
+#contact-section{
+    padding: 0 15vw 0 10vw;
+    margin-bottom: 15vh;
+}
+
+#contact-section h2{
+    font-family: "Inter", sans-serif;
+    font-weight: 200;
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    font-size: 3rem;
+    align-self: flex-start;
+}
+
+#contact-section ul li{
+    padding: 0;
+    text-transform: uppercase;
+}
+
+#instagram a{
+    text-decoration: none; /* Quita el subrayado */
+    color: inherit; /* Hace que el color del texto sea el mismo que el de su contenedor */
+    cursor: pointer; /* Mantiene el cursor de link */
+}
+
+/* END CONTACTO */
 
 /* START FOOTER*/
 
