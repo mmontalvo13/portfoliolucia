@@ -45,7 +45,7 @@
 .intro-section{
     height: 100vh;
     background: rgb(35,56,175);
-    background: linear-gradient(180deg, rgba(35,56,175,1) 0%, rgba(254,168,153,1) 75%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(180deg, rgba(35,56,175,1) 4%, rgba(255,255,255,1) 100%);
     padding: 5vh 15vw 0 10vw;
 }
 
@@ -84,11 +84,11 @@
 }
 
 .card{
+    padding: 5vh 0 10vh 0;
     width: 80vw;
     border: none;
-    border-top: 1px solid black;
-    padding: 5vh 0 10vh 0;
-    border-radius: 0;
+    /* border-top: 1px solid black;
+    border-radius: 0; */
 }
 
 .card h1{
@@ -131,16 +131,69 @@
     align-self: flex-start;
 }
 
-#contact-section ul li{
-    padding: 0;
-    text-transform: uppercase;
+#contact-section ul{
+    list-style: none;
+    padding: 5vh 0 0 0;
 }
 
-#instagram a{
-    text-decoration: none; /* Quita el subrayado */
-    color: inherit; /* Hace que el color del texto sea el mismo que el de su contenedor */
-    cursor: pointer; /* Mantiene el cursor de link */
+#contact-section ul li{
+    padding-left: 40px;
+    text-transform: uppercase;
+    position: relative;
+    margin: 1vh 0;
+    height: 3vh;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 300;
 }
+
+a{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+
+#contact-section ul li#instagram::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px; /* Set icon size */
+    height: 20px;
+    background-image: url("../imgs/instagram.svg");
+    background-size: contain; /* Ensure the icon scales properly */
+    background-repeat: no-repeat;
+}
+
+#contact-section ul li#email::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    background-image: url("../imgs/email.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#contact-section ul li#ubicacion::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-image: url("../imgs/location.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 
 /* END CONTACTO */
 
