@@ -28,24 +28,32 @@
 <body>
     <div class="hero-banner">
         <h1>Lucía Montalvo</h1>
-        <div class="main_logo"><img src="imgs/logo.jpg" alt="Lucia Montalvo's logo"></div>
+        <!-- <div class="main_logo"><img src="imgs/logo.jpg" alt="Lucia Montalvo's logo"></div> -->
+        <video autoplay loop muted playsinline loading="lazy" style="width: 100%;">
+            <source src="imgs/logo_animated.mp4" type="video/mp4">
+        </video>
     </div>
     <div class="intro-section">
         <h2 class="section_subtitle">Diseño gráfico</h2>
         <p>Soy Lucía, estudiante de Diseño Gráfico en la Universidad de Palermo. Mi pasión por la creatividad y el diseño me impulsa a explorar nuevas formas de comunicar ideas, ayudando a marcas a destacar con propuestas únicas y llenas de personalidad. Cada proyecto es una oportunidad para aprender, innovar y darle vida a conceptos visuales que cuentan historias.</p>
     </div>
-    <div class="works-section">
+    
+    <!-- ----------- -->
+    <!-- WORKS START -->
+    <!-- ----------- -->
+
+    <div class="container works-section">
+        <div class="row">
         <h2>Work</h2>
 
-        <!-- OLBIA CALCIO -->
-
+        <!-- OLBIA CALCIO START-->
+        <div class="col-12 col-md-6">
         <article class="card">
             <h1>Olbia Calcio</h1>
             <h2>Diseño gráfico</h2>
 
             <!-- Carousel Start -->
             <div id="olbiaCarousel" class="carousel slide" data-bs-ride="carousel">
-
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="imgs/olbia/dummy.png" class="d-block w-100" alt="dummy image">
@@ -67,15 +75,19 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
+
             </div>
             <!-- Carousel End -->
+
             <p>Creación de logotipos y elementos gráficos para Olbia Calcio, un club de fútbol italiano. La identidad visual fue diseñada para reflejar la tradición y el espíritu moderno del equipo, capturando su historia y dinamismo en cada detalle gráfico, desde la imagen de marca hasta las aplicaciones en diferentes plataformas.</p>
+        
         </article>
+        </div>
+        <!-- OLBIA CALCIO END -->
 
-        <!-- END OLBIA CALCIO -->
 
-
-        <!-- IL PANETTO -->
+        <!-- IL PANETTO START-->
+        <div class="col-12 col-md-6">
         <article class="card">
             <h1>Il Panetto</h1>
             <h2>Diseño & imagen de marca</h2>
@@ -85,22 +97,31 @@
 
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="imgs/panetto/panetto_1.jpg" class="d-block w-100" alt="Mock up de una caja con el logo de Il Panetto">
+                        <img src="imgs/panetto/panetto_1.png" class="d-block w-100 preview-img" alt="Mock up de una caja con el logo de Il Panetto">
                     </div>
                     <div class="carousel-item">
-                        <img src="imgs/panetto/panetto_2.jpg" class="d-block w-100" alt="Mock up de una etiqueta con el logo de Il Panetto">
+                        <img src="imgs/panetto/panetto_2.png" class="d-block w-100 preview-img" alt="Mock up de una etiqueta con el logo de Il Panetto">
                     </div>
                     <div class="carousel-item">
-                        <img src="imgs/panetto/panetto_3.jpg" class="d-block w-100" alt="Mock up de una bolsa con el logo de Il Panetto">
+                        <img src="imgs/panetto/panetto_3.jpg" class="d-block w-100 preview-img" alt="Mock up de una bolsa con el logo de Il Panetto">
                     </div>
                     <div class="carousel-item">
-                        <img src="imgs/panetto/panetto_4.jpg" class="d-block w-100" alt="Logo de Il Panetto">
+                        <img src="imgs/panetto/panetto_4.jpg" class="d-block w-100 preview-img" alt="Logo de Il Panetto">
                     </div>
                     <div class="carousel-item">
-                        <img src="imgs/panetto/panetto_5.jpg" class="d-block w-100" alt="Mock up de una caja abierta con el logo de Il Panetto">
+                        <img src="imgs/panetto/panetto_5.jpg" class="d-block w-100 preview-img" alt="Ilustraciones de café, pan, facturas, parte del branding de Il Panetto">
                     </div>
                     <div class="carousel-item">
-                        <img src="imgs/panetto/panetto_5.jpg" class="d-block w-100" alt="Ilustraciones de café, pan, facturas, parte del branding de Il Panetto">
+                        <img src="imgs/panetto/panetto_6.jpg" class="d-block w-100 preview-img" alt="Ilustraciones de café, pan, facturas, parte del branding de Il Panetto">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="imgs/panetto/panetto_7.png" class="d-block w-100 preview-img" alt="Ilustraciones de café, pan, facturas, parte del branding de Il Panetto">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="imgs/panetto/panetto_8.png" class="d-block w-100 preview-img" alt="Ilustraciones de café, pan, facturas, parte del branding de Il Panetto">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="imgs/panetto/panetto_9.png" class="d-block w-100 preview-img" alt="Ilustraciones de café, pan, facturas, parte del branding de Il Panetto">
                     </div>
                 </div>
 
@@ -119,7 +140,11 @@
             <p>Inspirado por un design brief (#58) de la cuenta @designerbriefs, este proyecto desarrolló la identidad visual y la loyalty card de Il Panetto, una panadería italiana que combina lo moderno y minimalista con un toque rústico. Las piezas reflejan la esencia de una panadería auténtica, creando una experiencia visual que captura la simplicidad y la calidad artesanal.</p>
         
         </article>
-        
+        </div>
+        <!-- IL PANETTO END-->
+
+        <!-- ECOS DE LUZ START-->
+        <div class="col-12 col-md-6">
         <article class="card">
             <h1>Ecos de luz</h1>
             <h2>Fotografía</h2>
@@ -207,10 +232,15 @@
             <!-- Carousel End -->
             <p>Ecos de Luz es una serie fotográfica que resalta la belleza oculta en los objetos cotidianos, transformados por reflejos y contrastes entre luces y sombras. Cada imagen invita a descubrir la magia en los detalles y la simplicidad de la interacción entre la luz y las formas.</p>
         </article>
+        </div>
+        <!-- ECOS DE LUZ END-->
 
-
-        
+        </div>
     </div>
+
+    <!-- ----------- -->
+    <!--  WORKS END  -->
+    <!-- ----------- -->
 
     <div class="container" id="contact-section">
         <h2 class="section_subtitle">Contact</h2>
@@ -221,14 +251,14 @@
         </ul>
     </div>
 
-    <!-- FOOTER -->
+    <!-- FOOTER START-->
     <footer class="container my-2">
         <ul class="row list-unstyled">
             <li class="col-6" id="año">2024®</li>
             <li class="col-6" id="nombre">Diseño gráfico - Lucía Montalvo</li>
         </ul>
     </footer>
-    <!-- END FOOTER -->
+    <!-- FOOTER END -->
     
     <!-- BOOTSTRAP BUNDLE WITH POPPER-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
