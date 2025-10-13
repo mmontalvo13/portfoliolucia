@@ -258,7 +258,7 @@ a {
     .media-container {
         order: -1; /* Move media container above the project list on mobile */
         height: 50vh; 
-        position: static; 
+        position: sticky; 
     }
     
     .anti-grid-list {
