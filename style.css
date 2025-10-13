@@ -1,0 +1,679 @@
+/* --- 0. Font Loading (The Structural Foundation) --- */
+
+/* 1. Neue Haas Grotesk - XXThin (Massive Display Type) */
+/* This file is NeueHaasGrotDisp-15XXThin-Trial.otf */
+@font-face {
+    font-family: 'Neue Haas Grotesk';
+    /* Use the filename you uploaded */
+    src: url('./fonts/NeueHaasGrotDisp-15XXThin-Trial.otf') format('opentype');
+    font-weight: 100; /* Maps XXThin to the CSS font-weight value used for H1s */
+    font-style: normal;
+    font-display: swap; 
+}
+
+/* 2. Neue Haas Grotesk - Light (Structural Body Text) */
+/* This file is NeueHaasGrotDisp-45Light-Trial.otf */
+@font-face {
+    font-family: 'Neue Haas Grotesk';
+    /* Use the filename you uploaded */
+    src: url('./fonts/NeueHaasGrotDisp-45Light-Trial.otf') format('opentype');
+    font-weight: 300; /* We will use 300 for general text based on this weight */
+    font-style: normal;
+    font-display: swap;
+}
+
+/* --- Fallback/Body Font Loading (Assuming Poppins is still used for body text) --- */
+/* Add Poppins @font-face rules here if you downloaded them locally */
+/* If not, include a standard Google Fonts link in index.html */
+
+
+/* --- 1. Global & Variable Setup (Ensure this remains BELOW the font-face rules) --- */
+:root {
+    /* Brand Palette */
+    --color-bg: #fdfae2;   
+    --color-text: #1c1b4d; 
+    --color-accent: #f3755c; 
+    
+    /* Typography (Now pointing to our loaded local fonts) */
+    --font-display: 'Neue Haas Grotesk', Helvetica, Arial, sans-serif;
+    --font-body: 'Poppins', Verdana, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-text);
+}
+
+/* --- 1. Rupturist Layout (The Split) --- */
+.rupture-layout {
+    display: grid;
+    grid-template-columns: 25% 75%; /* Extreme Asymmetry */
+    min-height: 100vh;
+}
+
+/* --- 2. Fixed Axis (The Structure) --- */
+.fixed-axis {
+    position: sticky;
+    top: 0;
+    height: 100vh; 
+    padding: 4vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid rgba(28, 27, 77, 0.1); 
+    z-index: 100; 
+}
+
+/* --- 3. Logo Integration (Structure vs. Manual) --- */
+.logo-container {
+    position: relative; 
+    width: 100%;
+    max-width: 200px; 
+}
+
+.main-logo {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 2; 
+    /* Indigo Color Filter: converts source to #1C1B4D */
+    filter: invert(100%) sepia(100%) saturate(0) hue-rotate(240deg) brightness(0.18); 
+}
+
+.logo-ghost-trace {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    z-index: 1; 
+    
+    /* Coral Accent Filter: converts source to #F3755C */
+    filter: invert(72%) sepia(35%) saturate(3078%) hue-rotate(331deg) brightness(97%) contrast(93%); 
+    
+    /* Manual Drift Animation */
+    animation: traceDrift 4s ease-in-out infinite alternate;
+}
+
+@keyframes traceDrift {
+    0% {
+        transform: translate(0px, 0px) scale(1);
+    }
+    50% {
+        transform: translate(1px, -1px) scale(1.005); 
+    }
+    100% {
+        transform: translate(-1px, 1px) scale(1);
+    }
+}
+
+/* --- 4. Navigation & Showcase (The Anti-Grid) --- */
+.main-nav a, .footer-links p {
+    font-size: 1.1rem;
+    margin-top: 0.75rem;
+    transition: color 0.3s;
+}
+
+.footer-links p {
+    font-size: 0.8rem;
+}
+
+.main-nav a:hover {
+    color: var(--color-accent); 
+}
+
+.portfolio-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Anti-Grid Division */
+}
+
+.anti-grid-list {
+    padding: 4vw 0 4vw 2vw;
+}
+
+.project-title-link {
+    display: block;
+    padding: 5vh 10vw 5vh 0; 
+    border-bottom: 1px solid rgba(28, 27, 77, 0.1);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.title-text {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 3vw, 10rem); 
+    font-weight: 200; /* Ultra Thin */
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: block;
+}
+
+.category-tag {
+    font-family: var(--font-body); /* Added font family for explicit styling */
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    opacity: 0; /* <<< FIX: HIDDEN BY DEFAULT */
+    margin-top: 0.5rem; 
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out; 
+    display: block;
+}
+
+.project-title-link:hover .title-text {
+    color: var(--color-accent); 
+    transform: translateX(15px); 
+}
+
+.project-title-link:hover .category-tag {
+    opacity: 1; /* <<< FIX: SHOWN ON HOVER */
+    transform: translateX(15px); /* Matches title shift */
+}
+
+.media-container {
+    background-color: var(--color-text); 
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease-out, filter 0.5s ease-out;
+    height: 100vh;
+    position: sticky; 
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.placeholder-text {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 100;
+    text-align: center;
+    line-height: 1.2;
+    color: var(--color-bg); 
+    transition: opacity 0.5s;
+}
+
+.media-container.is-active {
+    /* Tactile Distortion Effect */
+    filter: saturate(1.3) hue-rotate(-5deg) contrast(1.1) brightness(0.95); 
+}
+
+
+/* --- 5. Media Queries for Mobile/Tablet Optimization --- */
+@media (max-width: 900px) {
+    
+    /* 1. Break the Extreme Asymmetry (Vertical Stack) */
+    .rupture-layout {
+        grid-template-columns: 100%; 
+    }
+
+    /* 2. Fix the Navigational Axis (Horizontal Header) */
+    .fixed-axis {
+        position: static; 
+        height: auto; 
+        padding: 6vw 4vw; 
+        border-right: none;
+        border-bottom: 1px solid rgba(28, 27, 77, 0.1);
+        flex-direction: row; 
+        flex-wrap: wrap; 
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .logo-container {
+        max-width: 150px; 
+    }
+
+    .main-nav, .footer-links {
+        /* Hide complex nav elements on small screens */
+        display: none; 
+    }
+    
+    /* 3. Collapse the Portfolio Showcase */
+    .portfolio-showcase {
+        grid-template-columns: 1fr; 
+    }
+    
+    /* 4. Reposition the Media Container */
+    .media-container {
+        order: -1; /* Move media container above the project list on mobile */
+        height: 50vh; 
+        position: static; 
+    }
+    
+    .anti-grid-list {
+        padding: 4vw;
+    }
+    
+    /* 5. Scale down the Massive Typography */
+    .title-text {
+        font-size: clamp(2.5rem, 10vw, 5rem); 
+        letter-spacing: -0.02em;
+    }
+}
+
+/* --- NUEVAS REGLAS: Estilos para la Página "ABOUT" --- */
+
+/* Asegura que el enlace activo tenga el color Coral (The Manual) */
+.main-nav .active-link {
+    color: var(--color-accent);
+    font-weight: 500;
+}
+
+.about-content {
+    padding: 6vw;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem; /* Espacio vertical entre los bloques */
+}
+
+.about-manifesto-title {
+    font-family: var(--font-display); 
+    font-size: clamp(3rem, 10vw, 8rem); 
+    font-weight: 100; /* XXThin */
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    margin-bottom: 2rem;
+}
+
+.manifesto-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; /* Asimetría sutil en el contenido: 60/40 */
+    gap: 4vw;
+}
+
+.manifesto-concept p,
+.manifesto-details li {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.section-tag-small {
+    font-weight: 500;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.detail-label {
+    font-weight: 500; /* Medium Poppins */
+    color: var(--color-text);
+    margin-right: 0.5rem;
+}
+
+.manifesto-footer {
+    grid-column: 1 / -1; /* Ocupa ambas columnas */
+    padding-top: 4rem;
+    border-top: 1px solid rgba(28, 27, 77, 0.1);
+    margin-top: 2rem;
+}
+
+.final-statement {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-weight: 300; /* Light */
+    color: var(--color-accent);
+    line-height: 1.3;
+}
+
+
+/* --- Media Query Update: Asegurar que About/Manifesto sea responsive --- */
+@media (max-width: 900px) {
+    .manifesto-grid {
+        grid-template-columns: 1fr; /* Las columnas se apilan en móvil */
+        gap: 3rem;
+    }
+}
+
+/* --- NUEVAS REGLAS: Estilos para la Página "CONTACTO" --- */
+
+.contact-content {
+    padding: 6vw;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem; 
+}
+
+.contact-details-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem; /* Espacio entre los grupos de contacto */
+    max-width: 600px; /* Limitar el ancho para legibilidad */
+}
+
+.contact-item {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(28, 27, 77, 0.1); /* Separador estructural */
+}
+
+.contact-link {
+    font-family: var(--font-display); 
+    font-size: clamp(2rem, 5vw, 4rem); 
+    font-weight: 300; /* Light */
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    display: block;
+    width: fit-content; /* Asegura que el hover solo afecte al texto */
+}
+
+/* El elemento 'Manual' (hover) se manifiesta con el color Coral */
+.contact-link:hover {
+    color: var(--color-accent); 
+    transform: translateX(5px); /* Desplazamiento sutil */
+}
+
+.contact-statement {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    padding-top: 1rem;
+    color: var(--color-text);
+}
+
+
+/* --- Media Query Update: Ajuste para Contacto en Móvil --- */
+@media (max-width: 900px) {
+    .contact-content {
+        gap: 3rem;
+    }
+    
+    .contact-details-list {
+        max-width: 100%;
+    }
+}
+
+/* --- NUEVAS REGLAS: Estilos para Páginas de Proyectos --- */
+
+.project-detail-layout {
+    padding: 6vw 4vw 8vw 4vw; /* Padding para el área de contenido */
+    display: flex;
+    flex-direction: column;
+}
+
+/* 1. HEADER Y METADATOS DEL PROYECTO */
+.project-header {
+    margin-bottom: 5rem;
+}
+
+.project-title-large {
+    font-family: var(--font-display); 
+    font-size: clamp(4rem, 12vw, 10rem); 
+    font-weight: 100; /* XXThin */
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    color: var(--color-text);
+}
+
+.project-category-tag {
+    font-family: var(--font-body);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 500;
+    color: var(--color-accent); /* Énfasis Coral (Manual) */
+    margin-top: -0.5rem;
+    margin-bottom: 2rem;
+}
+
+.project-details-meta {
+    display: flex;
+    gap: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(28, 27, 77, 0.1);
+    font-size: 0.9rem;
+}
+
+.project-details-meta span {
+    font-weight: 700;
+    margin-right: 0.5rem;
+    color: var(--color-accent);
+}
+
+/* 2. INTRODUCCIÓN Y TEXTO DE SUMARIO */
+.project-intro-block {
+    max-width: 65%; /* Estructura: Limitar el ancho de la introducción para legibilidad */
+    margin-bottom: 6rem;
+}
+
+.project-sumary {
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    font-weight: 300; /* Light */
+    line-height: 1.4;
+    color: var(--color-text);
+}
+
+
+/* 3. ÁREA DE GALERÍA Y MEDIA (El Contenido Manual) */
+.project-gallery-area {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem; /* Espacio vertical entre los bloques de contenido */
+}
+
+.project-gallery-area img {
+    width: 100%;
+    height: auto;
+    display: block;
+    box-shadow: 8px 8px 0px 0px rgba(28, 27, 77, 0.1); /* Sombra sutil estructural */
+}
+
+/* Clases de Layout Flexibles */
+.full-width-asset {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.text-narrow {
+    max-width: 50%; /* Bloque de texto estrecho para contraste visual */
+    font-size: 1.15rem;
+    line-height: 1.6;
+}
+
+.section-subtitle {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--color-accent); /* Color Coral para destacar las secciones */
+    margin-bottom: 1rem;
+}
+
+.image-grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+/* 4. MEDIA QUERIES para Proyectos en Móvil */
+@media (max-width: 900px) {
+    .project-details-meta {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .project-intro-block {
+        max-width: 100%; /* El sumario ocupa todo el ancho */
+        margin-bottom: 3rem;
+    }
+    
+    .text-narrow {
+        max-width: 100%; /* El texto estrecho se expande */
+    }
+    
+    .image-grid-2col {
+        grid-template-columns: 1fr; /* Las imágenes en columna doble se apilan */
+        gap: 1.5rem;
+    }
+}
+
+/* --- Ajuste de Figcaption para Espacio Estructural --- */
+
+figcaption {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--color-text);
+    margin-top: 0.75rem; 
+    max-width: 80%; 
+    opacity: 0.7;
+}
+
+/* Regla para asegurar que las figuras que tienen pie de página tengan un margen inferior correcto */
+.project-gallery-area figure {
+    margin-bottom: 0; /* Asegura que el margen inferior lo controle el gap del contenedor */
+}
+
+/* --- NUEVAS REGLAS: Estilos para REVISTA SWING (Disrupción Editorial) --- */
+
+.editorial-content-grid {
+    display: grid;
+    /* La clave de la asimetría editorial: 70% contenido / 30% sidebar */
+    grid-template-columns: 3fr 1fr; 
+    gap: 4vw; /* Espacio horizontal entre las columnas */
+    row-gap: 6rem; /* Espacio vertical entre los bloques de contenido */
+    position: relative;
+    padding-top: 2rem; /* Separación de la introducción */
+}
+
+/* El contenido principal ocupa la columna ancha */
+.editorial-main-content {
+    grid-column: 1 / 2;
+}
+
+/* La barra lateral ocupa la columna estrecha */
+.editorial-sidebar {
+    grid-column: 2 / 3;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(28, 27, 77, 0.1); /* Separador sutil */
+}
+
+.sidebar-title {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--color-accent); /* Color Coral para el acento */
+    margin-bottom: 1.5rem;
+}
+
+.editorial-sidebar p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.design-checklist {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem;
+}
+
+.design-checklist li {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+    /* Elemento manual antes de cada item (el toque de tinta) */
+    padding-left: 1.5rem; 
+    position: relative;
+}
+
+.design-checklist li::before {
+    content: "•";
+    color: var(--color-accent);
+    font-weight: 700;
+    position: absolute;
+    left: 0;
+}
+
+/* Clave de la Ruptura: Texto superpuesto */
+.overlay-text-intro {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+    font-weight: 300; /* Light */
+    line-height: 1.2;
+    color: var(--color-accent); 
+    
+    /* Efecto de superposición */
+    transform: translateY(-50%) rotate(-1deg); 
+    margin-top: -3rem;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 10;
+    max-width: 80%;
+}
+
+/* Las imágenes que deben ocupar todo el ancho, incluyendo la sidebar */
+.span-all-columns {
+    grid-column: 1 / -1; /* Ocupa las dos columnas y el gap */
+    width: 100%;
+}
+
+
+/* --- Media Query Update: Ajuste para Móvil --- */
+@media (max-width: 900px) {
+    .editorial-content-grid {
+        grid-template-columns: 1fr; /* Las columnas se apilan en móvil */
+        row-gap: 4rem;
+    }
+
+    /* En móvil, la barra lateral va primero, luego el contenido */
+    .editorial-sidebar {
+        grid-row: 1;
+        grid-column: 1;
+    }
+    
+    .editorial-main-content {
+        grid-column: 1;
+    }
+
+    .overlay-text-intro {
+        transform: translateY(0) rotate(0deg); /* Se elimina la rotación en móvil */
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+        max-width: 100%;
+    }
+}
+
+/* --- Regla Estructural para controlar el ancho de figuras dentro del grid --- */
+
+/* Asegura que cualquier figura o imagen dentro del contenido principal (la columna 70%) */
+/* no se desborde, controlando su tamaño máximo */
+.editorial-content-grid .editorial-main-content figure,
+.editorial-content-grid .editorial-main-content img {
+    /* Limita el ancho de la figura o imagen al 100% del contenedor (el 70%) */
+    max-width: 100%; 
+    height: auto;
+}
+
+/* Se elimina la clase full-width-asset del HTML para usar solo massive-asset/span-all-columns. 
+   Pero si full-width-asset sigue en uso, también la limitamos: */
+.editorial-content-grid .full-width-asset {
+    max-width: 100%;
+    height: auto;
+}
