@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'salamanca': 'img/salamanca/',
         'vinilo': 'img/vinilo/manos.jpg',
         'guadalajara': 'images/preview-guadalajara.jpg',
-        'ecos': 'images/preview-ecos.jpg',
+        'ecos': 'img/ecos/ecos_1.jpg',
     };
 
     const handleMouseEnter = (event) => {
