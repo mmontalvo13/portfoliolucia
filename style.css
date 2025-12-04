@@ -84,7 +84,7 @@ a {
 .logo-container {
     position: relative; 
     width: 100%;
-    max-width: 200px; 
+    max-width: 300px; 
 }
 
 .main-logo {
@@ -222,12 +222,12 @@ a {
 /* --- 5. Media Queries for Mobile/Tablet Optimization --- */
 @media (max-width: 900px) {
     
-    /* 1. Break the Extreme Asymmetry (Vertical Stack) */
+    /* 1. Break the Extreme Asymmetry */
     .rupture-layout {
         grid-template-columns: 100%; 
     }
 
-    /* 2. Fix the Navigational Axis (Horizontal Header) */
+    /* 2. Fix the Navigational Axis */
     .fixed-axis {
         position: static; 
         height: auto; 
@@ -238,14 +238,82 @@ a {
         flex-wrap: wrap; 
         justify-content: space-between;
         align-items: center;
+        z-index: 200; /* Ensure header stays on top */
     }
     
     .logo-container {
         max-width: 150px; 
     }
 
-    .main-nav, .footer-links {
-        /* Hide complex nav elements on small screens */
+    /* --- NEW: MOBILE MENU STYLES --- */
+
+    /* The Toggle Button (Visible only on mobile) */
+    .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 300; /* Higher than the menu overlay */
+    }
+
+    .mobile-menu-toggle .bar {
+        width: 100%;
+        height: 2px;
+        background-color: var(--color-text);
+        transition: all 0.3s ease;
+    }
+
+    /* Animation: Turn Hamburger into X when active */
+    .mobile-menu-toggle.is-active .bar:first-child {
+        transform: translateY(9px) rotate(45deg);
+        background-color: var(--color-accent);
+    }
+    .mobile-menu-toggle.is-active .bar:last-child {
+        transform: translateY(-9px) rotate(-45deg);
+        background-color: var(--color-accent);
+    }
+
+    /* The Navigation Overlay */
+    .main-nav {
+        display: flex; /* Restore display */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--color-bg);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        
+        /* Animation States */
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        z-index: 150; /* Behind logo/button, in front of content */
+    }
+
+    /* When JavaScript adds the class 'is-open' */
+    .main-nav.is-open {
+        opacity: 1;
+        pointer-events: all;
+        transform: translateY(0);
+    }
+
+    .main-nav a {
+        font-family: var(--font-display);
+        font-size: 2.5rem; /* Large text for mobile */
+        font-weight: 300;
+    }
+
+    /* Keep footer links hidden on mobile or style them inside the menu if you prefer */
+    .footer-links {
         display: none; 
     }
     
@@ -256,7 +324,7 @@ a {
     
     /* 4. Reposition the Media Container */
     .media-container {
-        order: -1; /* Move media container above the project list on mobile */
+        order: -1; 
         height: 50vh; 
         position: sticky; 
     }
@@ -265,7 +333,6 @@ a {
         padding: 4vw;
     }
     
-    /* 5. Scale down the Massive Typography */
     .title-text {
         font-size: clamp(2.5rem, 10vw, 5rem); 
         letter-spacing: -0.02em;
@@ -373,7 +440,7 @@ a {
 
 .contact-link {
     font-family: var(--font-display); 
-    font-size: clamp(2rem, 5vw, 4rem); 
+    font-size: clamp(1rem, 5vw, 2.5rem); 
     font-weight: 300; /* Light */
     line-height: 1.2;
     letter-spacing: -0.02em;
@@ -676,4 +743,61 @@ figcaption {
 .editorial-content-grid .full-width-asset {
     max-width: 100%;
     height: auto;
+}
+
+/* Hide mobile toggle on desktop */
+.mobile-menu-toggle {
+    display: none;
+}
+
+/* --- PEGAR AL FINAL DE STYLE.CSS --- */
+
+/* 1. Ocultar el botón en pantallas grandes (Desktop) */
+.mobile-menu-toggle {
+    display: none;
+}
+
+/* 2. Mostrar y estilizar el botón SOLO en celular */
+@media (max-width: 900px) {
+    
+    /* Configuración del Botón */
+    .mobile-menu-toggle {
+        display: flex !important; /* !important fuerza su aparición */
+        flex-direction: column;
+        justify-content: space-between;
+        width: 35px; /* Ancho visible */
+        height: 24px; /* Alto visible */
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 9999; /* Por encima de todo */
+        /* Posicionamiento manual si flex falla */
+        position: relative; 
+    }
+
+    /* Las rayas del botón (Hamburguesa) */
+    .mobile-menu-toggle .bar {
+        display: block;
+        width: 100%;
+        height: 3px; /* Grosor de la línea */
+        background-color: #1c1b4d; /* Color ÍNDIGO (oscuro) para que contraste */
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+
+    /* Animación al hacer clic (se convierte en X) */
+    .mobile-menu-toggle.is-active .bar:first-child {
+        transform: translateY(10px) rotate(45deg);
+        background-color: #f3755c; /* Cambia a Coral */
+    }
+    
+    .mobile-menu-toggle.is-active .bar:last-child {
+        transform: translateY(-11px) rotate(-45deg);
+        background-color: #f3755c; /* Cambia a Coral */
+    }
+    
+    /* IMPORTANTE: Asegurar que el menú no esté bloqueado con display:none */
+    .main-nav {
+        display: flex !important;
+    }
 }

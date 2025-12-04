@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'swing': 'img/swing/tapa.jpg',
         'panetto': 'img/panetto/portada.png',
         'wine': 'img/vinos/swiss.png',
-        'salamanca': 'img/salamanca/',
+        'salamanca': 'img/salamanca/mockup_cuadernos.jpg',
         'vinilo': 'img/vinilo/manos.jpg',
         'guadalajara': 'images/preview-guadalajara.jpg',
         'ecos': 'img/ecos/ecos_1.jpg',
@@ -51,4 +51,27 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('mouseenter', handleMouseEnter);
         link.addEventListener('mouseleave', handleMouseLeave);
     });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    // ... existing code for links and mediaContainer ...
+
+    // --- NEW: Mobile Menu Logic ---
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const mainNav = document.querySelector('.main-nav');
+
+    if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', () => {
+            // Toggle the 'is-active' class on the button (for the X animation)
+            menuToggle.classList.toggle('is-active');
+            
+            // Toggle the 'is-open' class on the nav (to show/hide)
+            mainNav.classList.toggle('is-open');
+            
+            // Optional: Prevent scrolling when menu is open
+            document.body.style.overflow = mainNav.classList.contains('is-open') ? 'hidden' : '';
+        });
+    }
+    
+    // ... existing code for hover effects ...
 });
