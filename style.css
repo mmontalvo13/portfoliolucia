@@ -254,71 +254,26 @@ a {
         max-width: 150px; 
     }
 
-    /* --- NEW: MOBILE MENU STYLES --- */
+    /* --- MOBILE NAV: visible inline links (no hamburger) --- */
 
-    /* The Toggle Button (Visible only on mobile) */
+    /* Hamburger no longer used; nav links are shown directly */
     .mobile-menu-toggle {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 30px;
-        height: 20px;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        z-index: 300; /* Higher than the menu overlay */
+        display: none !important;
     }
 
-    .mobile-menu-toggle .bar {
-        width: 100%;
-        height: 2px;
-        background-color: var(--color-text);
-        transition: all 0.3s ease;
-    }
-
-    /* Animation: Turn Hamburger into X when active */
-    .mobile-menu-toggle.is-active .bar:first-child {
-        transform: translateY(9px) rotate(45deg);
-        background-color: var(--color-accent);
-    }
-    .mobile-menu-toggle.is-active .bar:last-child {
-        transform: translateY(-9px) rotate(-45deg);
-        background-color: var(--color-accent);
-    }
-
-    /* The Navigation Overlay */
     .main-nav {
-        display: flex; /* Restore display */
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background-color: var(--color-bg);
-        flex-direction: column;
-        justify-content: center;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
         align-items: center;
-        gap: 2rem;
-        
-        /* Animation States */
-        opacity: 0;
-        pointer-events: none;
-        transform: translateY(-20px);
-        transition: opacity 0.4s ease, transform 0.4s ease;
-        z-index: 150; /* Behind logo/button, in front of content */
-    }
-
-    /* When JavaScript adds the class 'is-open' */
-    .main-nav.is-open {
-        opacity: 1;
-        pointer-events: all;
-        transform: translateY(0);
+        gap: 1.4rem;
     }
 
     .main-nav a {
-        font-family: var(--font-display);
-        font-size: 2.5rem; /* Large text for mobile */
-        font-weight: 300;
+        font-family: var(--font-body);
+        font-size: 1.05rem;
+        font-weight: 400;
+        margin-top: 0;
     }
 
     /* Keep footer links hidden on mobile or style them inside the menu if you prefer */
@@ -1205,5 +1160,77 @@ button:focus-visible {
     .pull-quote {
         margin: 4rem 0;
         max-width: 100%;
+    }
+}
+
+/* ============================================================
+   17. HOMEPAGE INTRO + MOBILE PROJECT LIST CONTEXT
+   Desktop keeps the original split layout (intro hidden); on mobile
+   we add an intro and make each list row clearly read as a project.
+   ============================================================ */
+
+/* Intro is a mobile-only device; the desktop sidebar already gives context. */
+.home-intro {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .home-intro {
+        display: block;
+        padding: 7vw 4vw 1.5rem;
+    }
+
+    .intro-eyebrow {
+        font-family: var(--font-body);
+        font-size: 0.85rem;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        color: var(--color-accent);
+        margin-bottom: 1.25rem;
+    }
+
+    .intro-statement {
+        font-family: var(--font-display);
+        font-weight: 200;
+        font-size: clamp(2rem, 8.5vw, 3.2rem);
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        color: var(--color-text);
+    }
+
+    .intro-statement em {
+        font-style: normal;
+        color: var(--color-accent);
+    }
+
+    .intro-sub {
+        font-family: var(--font-body);
+        font-size: 1rem;
+        line-height: 1.55;
+        margin-top: 1.25rem;
+        max-width: 42ch;
+        opacity: 0.85;
+    }
+
+    /* Show the category on every project (no hover on touch) and add a
+       "tap to open" arrow so the rows clearly read as tappable projects. */
+    .category-tag {
+        opacity: 1;
+        transform: none;
+        margin-top: 0.6rem;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .category-tag::after {
+        content: "↗";
+        margin-left: 0.5rem;
+        font-size: 0.85em;
+    }
+
+    /* Avoid the desktop hover-shift firing on tap (sticky :hover on touch) */
+    .project-title-link:hover .title-text,
+    .project-title-link:hover .category-tag {
+        transform: none;
     }
 }
