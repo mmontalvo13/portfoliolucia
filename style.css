@@ -1234,3 +1234,88 @@ button:focus-visible {
         transform: none;
     }
 }
+
+/* ===================================================================
+   WebGL preview canvas
+   =================================================================== */
+.media-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* ===================================================================
+   Signature loader / page-transition veil
+   ------------------------------------------------------------------
+   Present in the HTML so it paints immediately (no flash). JS slides
+   it away on load and back to cover on internal navigation. With JS
+   off, the keyframe below still reveals the page after a short beat.
+   =================================================================== */
+.page-veil {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    transform: translateY(0);
+    transition: transform 0.85s cubic-bezier(0.76, 0, 0.24, 1);
+    animation: veilFallback 700ms ease 2200ms forwards; /* no-JS safety */
+}
+
+.page-veil__word {
+    font-family: var(--font-display);
+    font-weight: 200;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    line-height: 0.86;
+    font-size: clamp(2.4rem, 9vw, 7rem);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* The word only animates in on the first visit of a session. */
+.page-veil.is-intro .page-veil__word {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Revealed: slide the panel up and out of the way. */
+.page-veil.is-open {
+    transform: translateY(-101%);
+    pointer-events: none;
+}
+.page-veil.is-open .page-veil__word {
+    opacity: 0;
+    transform: translateY(-24px);
+    transition-duration: 0.4s;
+}
+
+/* Covering again before navigating away. */
+.page-veil.is-leaving {
+    transform: translateY(0);
+    transition-duration: 0.55s;
+}
+.page-veil.is-leaving .page-veil__word {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes veilFallback {
+    to { transform: translateY(-101%); pointer-events: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .page-veil,
+    .page-veil__word {
+        transition: opacity 0.3s ease;
+    }
+    .page-veil { animation: none; transform: translateY(0); }
+    .page-veil.is-open { opacity: 0; transform: translateY(0); }
+}
