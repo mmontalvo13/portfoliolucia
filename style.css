@@ -1253,6 +1253,10 @@ button:focus-visible {
    it away on load and back to cover on internal navigation. With JS
    off, the keyframe below still reveals the page after a short beat.
    =================================================================== */
+/* After the first page of a session an inline <head> script adds this
+   class so the loader never paints again (no per-navigation flash). */
+.veil-skip .page-veil { display: none; }
+
 .page-veil {
     position: fixed;
     inset: 0;

@@ -4,7 +4,7 @@ const FINE_POINTER = window.matchMedia('(pointer: fine)').matches && window.inne
 const REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 document.addEventListener('DOMContentLoaded', () => {
-    initLoaderAndTransitions();
+    initLoader();
     initProjectPreview();
     initMobileMenu();
     initScrollReveal();
@@ -14,63 +14,36 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ===================================================================
-   1. Signature loader + page transitions (the "veil")
+   1. Signature loader (the "veil") — FIRST LOAD ONLY
    ------------------------------------------------------------------
-   A full-screen panel covers the page on load and slides away to
-   reveal it. On internal navigation it slides back to cover, so
-   moving between projects feels like one continuous piece.
+   A full-screen panel covers the page on the very first visit of a
+   session and slides away to reveal it. An inline <head> script tags
+   later pages with `veil-skip` so the loader never reappears when
+   navigating between pages.
    =================================================================== */
-function initLoaderAndTransitions() {
+function initLoader() {
     const veil = document.querySelector('[data-veil]');
     if (!veil) return;
 
-    // Take control away from the no-JS CSS fallback animation.
+    // Disable the no-JS CSS fallback animation; JS controls the reveal.
     veil.style.animation = 'none';
 
-    const firstVisit = !sessionStorage.getItem('lm_seen');
-    sessionStorage.setItem('lm_seen', '1');
-    veil.classList.toggle('is-intro', firstVisit);
+    // Not the first page of the session -> remove the panel entirely.
+    if (document.documentElement.classList.contains('veil-skip')) {
+        veil.remove();
+        return;
+    }
 
-    const reveal = () => {
-        veil.classList.add('is-open');
-    };
+    veil.classList.add('is-intro');
+    const reveal = () => veil.classList.add('is-open');
+    const delay = REDUCE_MOTION ? 0 : 720;
 
-    // First visit lingers a touch longer for the name reveal.
-    const delay = REDUCE_MOTION ? 0 : (firstVisit ? 720 : 240);
     // Reveal once the page is painted; cap the wait so we never hang.
     let revealed = false;
     const go = () => { if (!revealed) { revealed = true; setTimeout(reveal, delay); } };
     if (document.readyState === 'complete') go();
     else window.addEventListener('load', go, { once: true });
-    setTimeout(go, 1400); // safety net
-
-    // Returning via the back/forward cache: make sure we're uncovered.
-    window.addEventListener('pageshow', (e) => {
-        if (e.persisted) { veil.classList.remove('is-leaving'); veil.classList.add('is-open'); }
-    });
-
-    if (REDUCE_MOTION) return;
-
-    // Intercept same-origin navigations and play the cover wipe first.
-    document.addEventListener('click', (e) => {
-        if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-        const a = e.target.closest('a');
-        if (!a) return;
-
-        const href = a.getAttribute('href');
-        if (!href || href.startsWith('#') || a.target === '_blank' || a.hasAttribute('download')) return;
-        if (/^(mailto:|tel:|javascript:)/i.test(href)) return;
-
-        let url;
-        try { url = new URL(a.href, location.href); } catch { return; }
-        if (url.origin !== location.origin) return;            // external -> let it go
-        if (url.pathname === location.pathname && url.hash) return; // same-page anchor
-
-        e.preventDefault();
-        veil.classList.remove('is-open');
-        veil.classList.add('is-leaving');
-        setTimeout(() => { window.location.href = url.href; }, 560);
-    });
+    setTimeout(go, 1600); // safety net
 }
 
 /* ===================================================================
@@ -83,11 +56,24 @@ function initProjectPreview() {
 
     const urls = links.map((l) => l.dataset.image).filter(Boolean);
 
-    const preview = createWebGLPreview(container) || createDomPreview(container);
+    // `preview` is mutable: if WebGL initialises but its textures can't be
+    // uploaded (e.g. opened via file://), it calls back and we swap to the
+    // plain DOM cross-fade so the images always show.
+    let preview = null;
+    const useDomFallback = () => {
+        preview = createDomPreview(container);
+        preview.show(urls[0]);
+        container.classList.add('is-active');
+    };
 
-    // Default to the first project so the panel is never empty (key on mobile).
-    preview.show(urls[0]);
-    container.classList.add('is-active');
+    preview = createWebGLPreview(container, useDomFallback);
+    if (!preview) {
+        useDomFallback();
+    } else {
+        // Default to the first project so the panel is never empty (key on mobile).
+        preview.show(urls[0]);
+        container.classList.add('is-active');
+    }
 
     links.forEach((link) => {
         link.addEventListener('mouseenter', () => {
@@ -127,7 +113,7 @@ function initProjectPreview() {
  * project images with a liquid ripple + chromatic split around the
  * cursor. Returns null if WebGL is unavailable so we can fall back.
  */
-function createWebGLPreview(container) {
+function createWebGLPreview(container, onFail) {
     const canvas = document.createElement('canvas');
     canvas.className = 'media-canvas';
     const gl = canvas.getContext('webgl', { antialias: true, premultipliedAlpha: false })
@@ -246,23 +232,30 @@ function createWebGLPreview(container) {
 
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
 
+    // Same-origin images: do NOT set crossOrigin (it makes them fail to load
+    // without CORS headers). texImage2D is wrapped in try/catch because some
+    // browsers block uploading local (file://) images into WebGL.
     const loadTexture = (url) => new Promise((resolve) => {
         if (cache.has(url)) return resolve(cache.get(url));
         const img = new Image();
-        img.crossOrigin = 'anonymous';
         img.onload = () => {
-            const t = makeTex();
-            gl.bindTexture(gl.TEXTURE_2D, t);
-            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
-            const entry = { tex: t, aspect: (img.naturalWidth || 1) / (img.naturalHeight || 1) };
-            cache.set(url, entry);
-            resolve(entry);
+            try {
+                const t = makeTex();
+                gl.bindTexture(gl.TEXTURE_2D, t);
+                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+                const entry = { tex: t, aspect: (img.naturalWidth || 1) / (img.naturalHeight || 1) };
+                cache.set(url, entry);
+                resolve(entry);
+            } catch (e) {
+                resolve(null);
+            }
         };
         img.onerror = () => resolve(null);
         img.src = url;
     });
 
     // smoothed state
+    let dead = false;
     let progress = 1, transitioning = false;
     let mX = 0.5, mY = 0.5, tX = 0.5, tY = 0.5;
     let hover = 0, tHover = 0;
@@ -333,9 +326,21 @@ function createWebGLPreview(container) {
     }
 
     const applyPending = async () => {
+        if (dead) return;
         const url = pendingUrl;
         const entry = await loadTexture(url);
-        if (!entry || url !== pendingUrl) return;
+        if (dead) return;
+        if (!entry) {
+            // First image couldn't be uploaded -> abandon WebGL and fall back.
+            if (currentUrl === null) {
+                dead = true;
+                stop();
+                if (canvas.parentNode) canvas.parentNode.removeChild(canvas);
+                if (typeof onFail === 'function') onFail();
+            }
+            return;
+        }
+        if (url !== pendingUrl) return;
         if (currentUrl === null) {
             // First image: show it straight away (progress 0 == current slot).
             texCur = entry.tex; aspectCur = entry.aspect; currentUrl = url; progress = 0;
