@@ -1,79 +1,134 @@
 <!DOCTYPE html>
+<!--
+    TEMPLATE para nuevos proyectos (sistema de "storytelling").
+    1. Copiá este archivo y renombralo (ej: nuevo-proyecto.html).
+    2. Reemplazá todo lo que esté entre [corchetes].
+    3. Agregá / quitá <section class="story-section"> según la cantidad de contenido.
+    4. Agregá el enlace correspondiente en index.html (.anti-grid-list) y en el
+       .project-pager de los proyectos vecinos.
+-->
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lucía Montalvo - [NOMBRE DEL PROYECTO]</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css"> 
+    <meta name="description" content="[Descripción breve del proyecto para buscadores y redes.]">
+    <meta property="og:title" content="[NOMBRE DEL PROYECTO] - Lucía Montalvo">
+    <meta property="og:description" content="[Descripción breve.]">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://luciamontalvo.com/projects/[archivo].html">
+    <meta property="og:image" content="https://luciamontalvo.com/img/[proyecto]/[hero].jpg">
+
+    <link rel="icon" href="../img/logo/isologo_negro.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Work+Sans:wght@100;200;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
     <main class="rupture-layout">
-        
+
         <header class="fixed-axis">
             <div class="logo-container">
-                <img src="path/to/lucia-montalvo-logo.svg" alt="Lucia Montalvo Graphic Design Logo" class="main-logo">
-                <img src="path/to/lucia-montalvo-logo.svg" alt="" class="logo-ghost-trace">
+                <a href="../index.html" class="logo-link" aria-label="Ir al inicio"><img src="../img/logo/logo_negro.svg" alt="Lucia Montalvo Graphic Design Logo" class="main-logo"></a>
             </div>
-            
+
+            <button class="mobile-menu-toggle" aria-label="Abrir menú">
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
             <nav class="main-nav">
-                <p><a href="index.html" class="active-link">portfolio</a></p>
-                <p><a href="about.html">sobre mí</a></p>
-                <p><a href="contact.html">contacto</a></p>
+                <p><a href="../index.html">portfolio</a></p>
+                <p><a href="../about.html">sobre mí</a></p>
+                <p><a href="../contact.html">contacto</a></p>
             </nav>
-            
+
             <div class="footer-links">
-                <p>Diseñado con Estructura & Alma.</p>
-                <p>@portfolio.lucia</p>
+                <p><a href="https://instagram.com/portfolio.lucia">@portfolio.lucia</a></p>
             </div>
         </header>
 
         <section class="project-detail-layout">
-            
+
+            <!-- Título -->
             <header class="project-header">
                 <hgroup>
                     <h1 class="project-title-large">[NOMBRE DEL PROYECTO]</h1>
-                    <h2 class="project-category-tag">[Categoría: Identidad Visual]</h2>
+                    <h2 class="project-category-tag">[Identidad Visual]</h2>
                 </hgroup>
-                
-                <div class="project-details-meta">
-                    <p><span>ROL:</span> Diseño de identidad, Editorial</p>
-                    <p><span>AÑO:</span> 2025</p>
-                    <p><span>CLIENTE:</span> [Nombre del cliente]</p>
-                </div>
             </header>
 
-            <article class="project-intro-block">
-                <p class="project-sumary">
-                    [SUMARIO DEL PROYECTO, EJ: "Il Panetto es una panadería italiana que busca transmitir el calor y la cercanía de la tradición. El proyecto combina una paleta de colores cálidos y neutros para evocar lo artesanal, lo cotidiano y lo familiar, logrando una estética que invita a quedarse..."]
+            <!-- Hero -->
+            <figure class="project-hero">
+                <img src="../img/[proyecto]/[hero].jpg" alt="[Vista principal del proyecto]">
+            </figure>
+
+            <!-- Contexto: frase de apertura + metadatos -->
+            <div class="project-context">
+                <p class="project-lede">
+                    [Una frase potente que resuma de qué se trata el proyecto.]
                 </p>
-            </article>
-
-            <div class="project-gallery-area">
-                
-                <figure class="full-width-asset">
-                    <img src="[ruta/a/imagen-portada-grande.jpg]" alt="Vista principal del proyecto">
-                    <figcaption>La convivencia entre la forma y el fondo.</figcaption>
-                </figure>
-                
-                <div class="content-block text-narrow">
-                    <h3 class="section-subtitle">El Reto de la Estructura</h3>
-                    <p>Aquí se explica la solución estructural aplicada: la retícula, la jerarquía tipográfica y la paleta de color Índigo/Cremoso.</p>
-                </div>
-
-                <div class="content-block image-grid-2col">
-                    <figure><img src="[ruta/a/maqueta-1.jpg]" alt=""></figure>
-                    <figure><img src="[ruta/a/maqueta-2.jpg]" alt=""></figure>
-                </div>
-
+                <dl class="project-meta">
+                    <div><dt>Rol</dt><dd>[Diseño de identidad, Editorial]</dd></div>
+                    <div><dt>Año</dt><dd>[2025]</dd></div>
+                    <div><dt>Cliente</dt><dd>[Nombre del cliente]</dd></div>
+                    <div><dt>Alcance</dt><dd>[Qué incluyó el proyecto]</dd></div>
+                </dl>
             </div>
+
+            <!-- Capítulo: texto + imagen -->
+            <section class="story-section">
+                <div class="story-head">
+                    <span class="story-index">01</span>
+                    <h2 class="story-label">[El reto]</h2>
+                </div>
+                <div class="feature-row">
+                    <div class="feature-text">
+                        <p>[Explicá la solución: retícula, jerarquía, paleta, concepto.]</p>
+                    </div>
+                    <figure class="feature-media">
+                        <img src="../img/[proyecto]/[imagen].jpg" alt="" loading="lazy">
+                        <figcaption>[Pie de imagen opcional.]</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <!-- Cita destacada -->
+            <p class="pull-quote">[Una frase corta y memorable.]</p>
+
+            <!-- Capítulo: grilla de imágenes -->
+            <section class="story-section">
+                <div class="story-head">
+                    <span class="story-index">02</span>
+                    <h2 class="story-label">[Aplicaciones]</h2>
+                </div>
+                <div class="story-grid">
+                    <figure><img src="../img/[proyecto]/[a].jpg" alt="" loading="lazy"></figure>
+                    <figure><img src="../img/[proyecto]/[b].jpg" alt="" loading="lazy"></figure>
+                </div>
+            </section>
+
+            <!-- Cierre -->
+            <footer class="project-closing">
+                <p>[Una reflexión final que cierre el relato del proyecto.]</p>
+            </footer>
+
+            <!-- Navegación entre proyectos -->
+            <nav class="project-pager">
+                <a href="[anterior].html" class="pager-link pager-prev">
+                    <span class="pager-label">← Anterior</span>
+                    <span class="pager-title">[Proyecto anterior]</span>
+                </a>
+                <a href="../index.html" class="pager-home">Índice</a>
+                <a href="[siguiente].html" class="pager-link pager-next">
+                    <span class="pager-label">Siguiente →</span>
+                    <span class="pager-title">[Proyecto siguiente]</span>
+                </a>
+            </nav>
 
         </section>
 
     </main>
-    
+
+    <script src="../app.js"></script>
 </body>
 </html>

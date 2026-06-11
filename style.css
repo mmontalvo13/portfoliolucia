@@ -34,8 +34,12 @@
     --color-text: #1c1b4d; 
     --color-accent: #f3755c; 
     
-    /* Typography (Now pointing to our loaded local fonts) */
-    --font-display: 'Neue Haas Grotesk', Helvetica, Arial, sans-serif;
+    /* Typography (Now pointing to our loaded local fonts).
+       NOTE: the Neue Haas "-Trial" files have NO accented glyphs (á, í, ó, ñ…),
+       so 'Work Sans' is listed next as a thin fallback that DOES have them —
+       this keeps accents at the right (thin) weight instead of bold Arial.
+       Replace the trial fonts with the licensed full version to remove the fallback. */
+    --font-display: 'Neue Haas Grotesk', 'Work Sans', Helvetica, Arial, sans-serif;
     --font-body: 'Poppins', Verdana, sans-serif;
 }
 
@@ -85,6 +89,10 @@ a {
     position: relative; 
     width: 100%;
     max-width: 300px; 
+}
+
+.logo-link {
+    display: block;
 }
 
 .main-logo {
@@ -151,7 +159,7 @@ a {
 
 .project-title-link {
     display: block;
-    padding: 5vh 10vw 5vh 0; 
+    padding: 4.5vh 2vw 4.5vh 0; 
     border-bottom: 1px solid rgba(28, 27, 77, 0.1);
     cursor: pointer;
     overflow: hidden;
@@ -159,7 +167,7 @@ a {
 
 .title-text {
     font-family: var(--font-display);
-    font-size: clamp(3rem, 3vw, 10rem); 
+    font-size: clamp(2.75rem, 4.5vw, 5.5rem); 
     font-weight: 200; /* Ultra Thin */
     line-height: 0.8;
     letter-spacing: -0.05em;
@@ -192,25 +200,26 @@ a {
 
 .media-container {
     background-color: var(--color-text); 
-    background-size: cover;
-    background-position: center;
-    transition: background-image 0.5s ease-out, filter 0.5s ease-out;
+    transition: filter 0.5s ease-out;
     height: 100vh;
     position: sticky; 
     top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    overflow: hidden;
 }
 
-.placeholder-text {
-    font-family: var(--font-display);
-    font-size: 2rem;
-    font-weight: 100;
-    text-align: center;
-    line-height: 1.2;
-    color: var(--color-bg); 
-    transition: opacity 0.5s;
+/* Two stacked layers used for a smooth cross-fade between previews (set in app.js) */
+.media-layer {
+    position: absolute;
+    inset: -7%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    will-change: transform, opacity;
+}
+
+.media-layer.is-visible {
+    opacity: 1;
 }
 
 .media-container.is-active {
@@ -317,20 +326,27 @@ a {
         display: none; 
     }
     
-    /* 3. Collapse the Portfolio Showcase */
+    /* 3. Collapse the Portfolio Showcase.
+       Use flex (not grid) so the sticky preview can travel the full list. */
     .portfolio-showcase {
-        grid-template-columns: 1fr; 
+        display: flex;
+        flex-direction: column;
     }
     
-    /* 4. Reposition the Media Container */
+    /* 4. Sticky preview banner pinned to the top while the list scrolls behind it */
     .media-container {
         order: -1; 
-        height: 50vh; 
+        height: 45vh; 
         position: sticky; 
+        top: 0;
+        z-index: 2;
     }
     
     .anti-grid-list {
         padding: 4vw;
+        /* Extra room at the end so the last project can scroll up into the
+           "selected" band (otherwise Ecos could never become active). */
+        padding-bottom: 45vh;
     }
     
     .title-text {
@@ -481,11 +497,14 @@ a {
     padding: 6vw 4vw 8vw 4vw; /* Padding para el área de contenido */
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 1400px; /* Evita que el contenido sea gigante en pantallas anchas */
+    margin-inline: auto;
 }
 
 /* 1. HEADER Y METADATOS DEL PROYECTO */
 .project-header {
-    margin-bottom: 5rem;
+    margin-bottom: 2.5rem;
 }
 
 .project-title-large {
@@ -543,10 +562,30 @@ a {
 }
 
 .project-gallery-area img {
+    display: block;
     width: 100%;
     height: auto;
-    display: block;
     box-shadow: 8px 8px 0px 0px rgba(28, 27, 77, 0.1); /* Sombra sutil estructural */
+}
+
+/* Imágenes "statement" a todo lo ancho: se acotan en altura para que las
+   imágenes verticales no dominen la página, manteniendo el aspecto (sin recorte). */
+.full-width-asset img,
+.massive-asset img,
+.span-all-columns img {
+    width: auto;
+    max-width: 100%;
+    max-height: 78vh;
+    margin-inline: auto;
+}
+
+/* Imágenes en grilla de 2 columnas: altura acotada y centradas, para que
+   los pares se vean ordenados sin importar su orientación. */
+.image-grid-2col img {
+    width: auto;
+    max-width: 100%;
+    max-height: 60vh;
+    margin-inline: auto;
 }
 
 /* Clases de Layout Flexibles */
@@ -745,59 +784,426 @@ figcaption {
     height: auto;
 }
 
-/* Hide mobile toggle on desktop */
+/* Hide the mobile toggle on desktop (the media query above re-enables it on mobile) */
 .mobile-menu-toggle {
     display: none;
 }
 
-/* --- PEGAR AL FINAL DE STYLE.CSS --- */
-
-/* 1. Ocultar el botón en pantallas grandes (Desktop) */
-.mobile-menu-toggle {
-    display: none;
+/* --- 6. "Volver al portfolio" link on project pages --- */
+.back-link {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text);
+    margin-top: 5rem;
+    align-self: flex-start;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-/* 2. Mostrar y estilizar el botón SOLO en celular */
+.back-link:hover {
+    color: var(--color-accent);
+    transform: translateX(-5px);
+}
+
+/* --- 7. Accessibility: visible keyboard focus --- */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+    border-radius: 2px;
+}
+
+/* --- 8. Respect users who prefer reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* --- 9. Project pager (prev / index / next) --- */
+.project-pager {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 6rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(28, 27, 77, 0.1);
+}
+
+.pager-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    transition: transform 0.3s ease;
+}
+
+.pager-next {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.pager-label {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+}
+
+.pager-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 300;
+    line-height: 1;
+    color: var(--color-text);
+    transition: color 0.3s ease;
+}
+
+.pager-link:hover .pager-title {
+    color: var(--color-accent);
+}
+
+.pager-home {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.pager-home:hover {
+    color: var(--color-accent);
+}
+
+@media (max-width: 600px) {
+    .project-pager {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem 1rem;
+    }
+    .pager-home {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        justify-self: center;
+    }
+}
+
+/* --- 10. Magnetic links (smooth return is handled here, offset in app.js) --- */
+.main-nav a {
+    transition: color 0.3s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    display: inline-block;
+}
+
+/* --- 11. Scroll reveal --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal.in-view {
+    opacity: 1;
+    transform: none;
+}
+
+/* --- 12. Animated underline on homepage project titles --- */
+.title-text {
+    position: relative;
+}
+
+.title-text::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0.1em;
+    width: 100%;
+    height: 1px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.project-title-link:hover .title-text::after {
+    transform: scaleX(1);
+}
+
+/* --- 14. 404 page --- */
+.error-content {
+    padding: 6vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.error-code {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 14vw, 11rem);
+    font-weight: 100;
+    line-height: 0.8;
+    color: var(--color-accent);
+}
+
+.error-text {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    max-width: 480px;
+    margin-bottom: 1rem;
+}
+
+/* --- 15. Gentle page-load fade-in --- */
+@media (prefers-reduced-motion: no-preference) {
+    .rupture-layout {
+        animation: pageFade 0.7s ease both;
+    }
+    @keyframes pageFade {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+    }
+}
+
+/* ============================================================
+   16. STORYTELLING SYSTEM FOR PROJECT PAGES
+   Hero -> Context (lede + meta) -> numbered chapters with
+   alternating feature rows -> pull quote -> closing.
+   ============================================================ */
+
+/* Cinematic hero band: one consistent height across all projects */
+.project-hero {
+    margin: 0 0 0;
+    width: 100%;
+}
+
+.project-hero img {
+    width: 100%;
+    height: clamp(340px, 60vh, 640px);
+    object-fit: cover;
+    display: block;
+    box-shadow: 14px 14px 0 0 rgba(28, 27, 77, 0.08);
+}
+
+/* Context: a large lede paragraph beside the project metadata */
+.project-context {
+    display: grid;
+    grid-template-columns: 1.7fr 1fr;
+    gap: 4vw;
+    align-items: start;
+    margin: 4rem 0 7rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(28, 27, 77, 0.12);
+}
+
+.project-lede {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+    font-weight: 300;
+    line-height: 1.35;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.project-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    margin: 0;
+    padding-top: 0.4rem;
+}
+
+.project-meta div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.project-meta dt {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+}
+
+.project-meta dd {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: var(--color-text);
+}
+
+/* Chapters */
+.story-section {
+    margin-bottom: 7rem;
+}
+
+.story-head {
+    display: flex;
+    align-items: baseline;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(28, 27, 77, 0.12);
+}
+
+.story-index {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    flex-shrink: 0;
+}
+
+.story-label {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 4vw, 3rem);
+    font-weight: 200;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--color-text);
+    margin: 0;
+}
+
+/* Feature row: text and image side by side, alternating */
+.feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4vw;
+    align-items: center;
+}
+
+.feature-row + .feature-row,
+.feature-row + .story-figure,
+.story-figure + .feature-row {
+    margin-top: 4rem;
+}
+
+.feature-row.reverse .feature-media {
+    order: 2;
+}
+
+.feature-text p {
+    font-size: 1.1rem;
+    line-height: 1.65;
+    color: var(--color-text);
+}
+
+.feature-text p + p {
+    margin-top: 1.1rem;
+}
+
+.feature-media img,
+.story-figure img {
+    width: 100%;
+    height: auto;
+    max-height: 72vh;
+    object-fit: contain;
+    display: block;
+    box-shadow: 8px 8px 0 0 rgba(28, 27, 77, 0.1);
+}
+
+.story-figure {
+    margin-top: 3rem;
+}
+
+/* Two-up gallery inside a chapter (reuses image-grid-2col sizing rules) */
+.story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+    margin-top: 3rem;
+}
+
+.story-grid img {
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+    object-fit: contain;
+    display: block;
+    box-shadow: 8px 8px 0 0 rgba(28, 27, 77, 0.1);
+}
+
+/* Pull quote: a breathing moment of emphasis */
+.pull-quote {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 5vw, 3.4rem);
+    font-weight: 200;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: var(--color-accent);
+    max-width: 18ch;
+    margin: 7rem 0;
+}
+
+/* Closing statement */
+.project-closing {
+    margin: 6rem 0 0;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(28, 27, 77, 0.12);
+}
+
+.project-closing p {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 300;
+    line-height: 1.5;
+    max-width: 60ch;
+    color: var(--color-text);
+}
+
+/* Shared caption styling for the new components */
+.project-hero figcaption,
+.feature-media figcaption,
+.story-figure figcaption,
+.story-grid figcaption {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: var(--color-text);
+    opacity: 0.65;
+    margin-top: 0.75rem;
+    max-width: 60ch;
+}
+
 @media (max-width: 900px) {
-    
-    /* Configuración del Botón */
-    .mobile-menu-toggle {
-        display: flex !important; /* !important fuerza su aparición */
-        flex-direction: column;
-        justify-content: space-between;
-        width: 35px; /* Ancho visible */
-        height: 24px; /* Alto visible */
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        z-index: 9999; /* Por encima de todo */
-        /* Posicionamiento manual si flex falla */
-        position: relative; 
+    .project-context {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        margin: 3rem 0 4rem;
     }
 
-    /* Las rayas del botón (Hamburguesa) */
-    .mobile-menu-toggle .bar {
-        display: block;
-        width: 100%;
-        height: 3px; /* Grosor de la línea */
-        background-color: #1c1b4d; /* Color ÍNDIGO (oscuro) para que contraste */
-        border-radius: 2px;
-        transition: all 0.3s ease;
+    .feature-row {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 
-    /* Animación al hacer clic (se convierte en X) */
-    .mobile-menu-toggle.is-active .bar:first-child {
-        transform: translateY(10px) rotate(45deg);
-        background-color: #f3755c; /* Cambia a Coral */
+    /* Image always above its text on mobile, regardless of desktop order */
+    .feature-row .feature-media {
+        order: -1;
     }
-    
-    .mobile-menu-toggle.is-active .bar:last-child {
-        transform: translateY(-11px) rotate(-45deg);
-        background-color: #f3755c; /* Cambia a Coral */
+
+    .story-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
-    
-    /* IMPORTANTE: Asegurar que el menú no esté bloqueado con display:none */
-    .main-nav {
-        display: flex !important;
+
+    .story-section {
+        margin-bottom: 4.5rem;
+    }
+
+    .pull-quote {
+        margin: 4rem 0;
+        max-width: 100%;
     }
 }

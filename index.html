@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lucía Montalvo - Diseñadora Gráfica</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css"> 
+    <meta name="description" content="Portfolio de Lucía Montalvo, diseñadora gráfica. Identidad visual, editorial, packaging y fotografía donde conviven la estructura y lo manual.">
+
+    <meta property="og:title" content="Lucía Montalvo - Diseñadora Gráfica">
+    <meta property="og:description" content="Portfolio de diseño gráfico: identidad visual, editorial, packaging y fotografía.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://luciamontalvo.com/">
+
+    <link rel="icon" href="img/logo/isologo_negro.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Work+Sans:wght@100;200;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -15,7 +21,7 @@
 
         <header class="fixed-axis">
             <div class="logo-container">
-                <img src="img/logo/logo_negro.svg" alt="Lucia Montalvo Graphic Design Logo" class="main-logo">
+                <a href="index.html" class="logo-link" aria-label="Ir al inicio"><img src="img/logo/logo_negro.svg" alt="Lucia Montalvo Graphic Design Logo" class="main-logo"></a>
             </div>
             
             <button class="mobile-menu-toggle" aria-label="Abrir menú">
@@ -41,12 +47,12 @@
                     <span class="category-tag">Editorial</span>
                 </a>
                 
-                <a href="projects/panetto.html" class="project-title-link" data-project-id="panetto" data-image="img/panetto/portada.png">
+                <a href="projects/panetto.html" class="project-title-link" data-project-id="panetto" data-image="img/panetto/portada.jpg">
                     <span class="title-text">Il Panetto</span>
                     <span class="category-tag">Identidad Visual</span>
                 </a>
                 
-                <a href="projects/wine.html" class="project-title-link" data-project-id="wine" data-image="img/vinos/swiss.png">
+                <a href="projects/wine.html" class="project-title-link" data-project-id="wine" data-image="img/vinos/swiss.jpg">
                     <span class="title-text">Wine Labels</span>
                     <span class="category-tag">Packaging</span>
                 </a>
@@ -61,20 +67,13 @@
                     <span class="category-tag">Identidad Visual</span>
                 </a>
                 
-                <!-- <a href="/projects/guadalajara.html" class="project-title-link" data-project-id="guadalajara" data-image="images/preview-guadalajara.jpg">
-                    <span class="title-text">guadalajara</span>
-                    <span class="category-tag">Packaging</span>
-                </a> -->
-                
                 <a href="projects/ecos.html" class="project-title-link" data-project-id="ecos" data-image="img/ecos/ecos_1.jpg">
                     <span class="title-text">Ecos de luz</span>
                     <span class="category-tag">Fotografía</span>
                 </a>
             </div>
             
-            <div id="media-preview" class="media-container" data-active-id="default">
-                <!-- <p class="placeholder-text">The Manual:<br>Hover over a project.</p> -->
-            </div>
+            <div id="media-preview" class="media-container" data-active-id="default"></div>
 
         </section>
 
