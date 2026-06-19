@@ -4,51 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>try{if(sessionStorage.getItem('lm_seen')){document.documentElement.classList.add('veil-skip')}else{sessionStorage.setItem('lm_seen','1')}}catch(e){}</script>
-    <title>Lucía Montalvo - Página no encontrada</title>
+    <title>Lucía Montalvo — Página no encontrada</title>
     <meta name="robots" content="noindex">
 
-    <link rel="icon" href="img/logo/isologo_negro.svg" type="image/svg+xml">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Work+Sans:wght@100;200;300&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/logo/isologo_azul.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="page-veil" data-veil aria-hidden="true">
-        <span class="page-veil__word">lucía<br>montalvo</span>
+        <span class="page-veil__word">lucía<br><b>montalvo</b></span>
     </div>
 
-    <main class="rupture-layout">
+    <header class="site-header">
+        <nav class="nav-pill" aria-label="Navegación principal">
+            <a href="index.html">home</a>
+            <a href="servicios.html">servicios</a>
+            <a href="index.html#portfolio">portfolio</a>
+            <a href="contact.html">contacto</a>
+        </nav>
+    </header>
 
-        <header class="fixed-axis">
-            <div class="logo-container">
-                <a href="index.html" class="logo-link" aria-label="Ir al inicio"><img src="img/logo/logo_negro.svg" alt="Lucia Montalvo Graphic Design Logo" class="main-logo"></a>
-            </div>
-
-            <button class="mobile-menu-toggle" aria-label="Abrir menú">
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            <nav class="main-nav">
-                <p><a href="index.html">portfolio</a></p>
-                <p><a href="about.html">sobre mí</a></p>
-                <p><a href="contact.html">contacto</a></p>
-            </nav>
-
-            <div class="footer-links">
-                <p><a href="https://instagram.com/portfolio.lucia">@portfolio.lucia</a></p>
-            </div>
-        </header>
-
-        <section class="error-content">
+    <main>
+        <section class="shell error-content">
             <p class="error-code">404</p>
-            <h1 class="about-manifesto-title">PÁGINA<br>PERDIDA</h1>
+            <h1 class="page-title">página <em>perdida</em></h1>
             <p class="error-text">
                 La página que buscás no existe o cambió de lugar. Pero el resto del trabajo sigue acá.
             </p>
-            <a href="index.html" class="back-link" data-magnetic>← Volver al portfolio</a>
+            <a href="index.html" class="btn-pill">← volver al inicio</a>
         </section>
-
     </main>
+
+    <footer class="site-footer">
+        <div class="shell footer-grid">
+            <p class="footer-name">lucía <b>montalvo</b></p>
+            <nav class="footer-links" aria-label="Enlaces de pie">
+                <a href="servicios.html">servicios</a>
+                <a href="contact.html">contacto</a>
+                <a href="https://instagram.com/portfolio.lucia" target="_blank" rel="noopener">@portfolio.lucia</a>
+                <a href="https://www.behance.net/lumontalvo" target="_blank" rel="noopener">Behance</a>
+            </nav>
+            <p class="footer-copy">© 2026 Lucía Montalvo · Diseño gráfico — identidad, editorial, packaging y fotografía.</p>
+        </div>
+    </footer>
 
     <script src="app.js"></script>
 </body>

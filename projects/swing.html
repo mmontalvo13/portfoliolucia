@@ -12,8 +12,10 @@
     <meta property="og:url" content="https://luciamontalvo.com/projects/swing.html">
     <meta property="og:image" content="https://luciamontalvo.com/img/swing/tapa_nina_mosaico.jpg">
 
-    <link rel="icon" href="../img/logo/isologo_negro.svg" type="image/svg+xml">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Work+Sans:wght@100;200;300&display=swap" rel="stylesheet">
+    <link rel="icon" href="../img/logo/isologo_azul.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -22,29 +24,17 @@
         <span class="page-veil__word">lucía<br>montalvo</span>
     </div>
 
-    <main class="rupture-layout">
+    <header class="site-header">
+        <nav class="nav-pill" aria-label="Navegación principal">
+            <a href="../index.html">home</a>
+            <a href="../servicios.html">servicios</a>
+            <a href="../index.html#portfolio">portfolio</a>
+            <a href="../contact.html">contacto</a>
+        </nav>
+    </header>
 
-        <header class="fixed-axis">
-            <div class="logo-container">
-                <a href="../index.html" class="logo-link" aria-label="Ir al inicio"><img src="../img/logo/logo_negro.svg" alt="Lucia Montalvo Graphic Design Logo" class="main-logo"></a>
-            </div>
-
-            <button class="mobile-menu-toggle" aria-label="Abrir menú">
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            <nav class="main-nav">
-                <p><a href="../index.html">portfolio</a></p>
-                <p><a href="../about.html">sobre mí</a></p>
-                <p><a href="../contact.html">contacto</a></p>
-            </nav>
-
-            <div class="footer-links">
-                <p><a href="https://instagram.com/portfolio.lucia">@portfolio.lucia</a></p>
-            </div>
-        </header>
-
-        <section class="project-detail-layout">
+    <main>
+        <section class="project shell">
 
             <header class="project-header">
                 <hgroup>
@@ -136,8 +126,20 @@
             </nav>
 
         </section>
-
     </main>
+
+    <footer class="site-footer">
+        <div class="shell footer-grid">
+            <p class="footer-name">lucía <b>montalvo</b></p>
+            <nav class="footer-links" aria-label="Enlaces de pie">
+                <a href="../servicios.html">servicios</a>
+                <a href="../contact.html">contacto</a>
+                <a href="https://instagram.com/portfolio.lucia" target="_blank" rel="noopener">@portfolio.lucia</a>
+                <a href="https://www.behance.net/lumontalvo" target="_blank" rel="noopener">Behance</a>
+            </nav>
+            <p class="footer-copy">© 2026 Lucía Montalvo · Diseño gráfico — identidad, editorial, packaging y fotografía.</p>
+        </div>
+    </footer>
 
     <script src="../app.js"></script>
 </body>

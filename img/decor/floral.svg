@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 300" fill="currentColor" aria-hidden="true">
+  <g transform="translate(110 280)">
+    <!-- stem -->
+    <path d="M-3 0 C -10 -90 -6 -170 -2 -250 C 0 -180 4 -90 3 0 Z" opacity="0.85"/>
+    <!-- leaves fanning out, rounded teardrop shapes -->
+    <g>
+      <path transform="rotate(-52)" d="M0 0 C 46 -58 46 -132 0 -150 C -46 -132 -46 -58 0 0 Z"/>
+      <path transform="rotate(-30)" d="M0 0 C 52 -70 50 -158 0 -182 C -50 -158 -52 -70 0 0 Z"/>
+      <path transform="rotate(-12)" d="M0 0 C 44 -66 42 -176 0 -210 C -42 -176 -44 -66 0 0 Z"/>
+      <path transform="rotate(8)"   d="M0 0 C 48 -72 46 -168 0 -198 C -46 -168 -48 -72 0 0 Z"/>
+      <path transform="rotate(28)"  d="M0 0 C 50 -66 48 -150 0 -176 C -48 -150 -50 -66 0 0 Z"/>
+      <path transform="rotate(50)"  d="M0 0 C 44 -56 44 -124 0 -142 C -44 -124 -44 -56 0 0 Z"/>
+    </g>
+    <!-- little buds -->
+    <circle cx="-78" cy="-120" r="13" opacity="0.9"/>
+    <circle cx="86" cy="-96" r="10" opacity="0.9"/>
+    <circle cx="54" cy="-210" r="9" opacity="0.85"/>
+    <circle cx="-44" cy="-224" r="7" opacity="0.8"/>
+  </g>
+</svg>

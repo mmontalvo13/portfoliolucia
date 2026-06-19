@@ -4,92 +4,197 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>try{if(sessionStorage.getItem('lm_seen')){document.documentElement.classList.add('veil-skip')}else{sessionStorage.setItem('lm_seen','1')}}catch(e){}</script>
-    <title>Lucía Montalvo - Diseñadora Gráfica</title>
-    <meta name="description" content="Portfolio de Lucía Montalvo, diseñadora gráfica. Identidad visual, editorial, packaging y fotografía donde conviven la estructura y lo manual.">
+    <title>Lucía Montalvo — Diseño gráfico</title>
+    <meta name="description" content="Portfolio de Lucía Montalvo, diseñadora gráfica. Identidad visual, editorial, packaging y fotografía: diseño creativo, estratégico y personal.">
 
-    <meta property="og:title" content="Lucía Montalvo - Diseñadora Gráfica">
-    <meta property="og:description" content="Portfolio de diseño gráfico: identidad visual, editorial, packaging y fotografía.">
+    <meta property="og:title" content="Lucía Montalvo — Diseño gráfico">
+    <meta property="og:description" content="Diseño creativo, estratégico y personal: identidad visual, editorial, packaging y fotografía.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://luciamontalvo.com/">
 
-    <link rel="icon" href="img/logo/isologo_negro.svg" type="image/svg+xml">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Work+Sans:wght@100;200;300&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/logo/isologo_azul.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="page-veil" data-veil aria-hidden="true">
-        <span class="page-veil__word">lucía<br>montalvo</span>
+        <p class="intro-logo">lucía montalvo<span>graphic design</span></p>
+        <div class="intro-hola">
+            <span>ho</span><svg class="intro-l" viewBox="0 0 100 190" aria-hidden="true"><path d="M46 184 C40 138 44 92 54 58 C60 36 60 14 70 14 C80 14 78 38 62 44 C52 48 56 90 58 120 C59 150 58 168 58 184" pathLength="1"/></svg><span>a</span>
+        </div>
     </div>
 
-    <main class="rupture-layout">
+    <header class="site-header">
+        <nav class="nav-pill" aria-label="Navegación principal">
+            <a href="index.html">home</a>
+            <a href="servicios.html">servicios</a>
+            <a href="#portfolio">portfolio</a>
+            <a href="contact.html">contacto</a>
+        </nav>
+    </header>
 
-        <header class="fixed-axis">
-            <div class="logo-container">
-                <a href="index.html" class="logo-link" aria-label="Ir al inicio"><img src="img/logo/logo_negro.svg" alt="Lucia Montalvo Graphic Design Logo" class="main-logo"></a>
-            </div>
-            
-            <button class="mobile-menu-toggle" aria-label="Abrir menú">
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            <nav class="main-nav">
-                <p><a href="index.html" class="active-link">portfolio</a></p>
-                <p><a href="about.html">sobre mí</a></p>
-                <p><a href="contact.html">contacto</a></p>
-            </nav>
-            
-            <div class="footer-links">
-                <p><a href="https://instagram.com/portfolio.lucia">@portfolio.lucia</a></p>
-            </div>
-        </header>
+    <main>
 
-        <section class="home-intro">
-            <p class="intro-eyebrow">lucía montalvo · diseño gráfico</p>
-            <h1 class="intro-statement">hago que las cosas se vean <em>bien</em>.</h1>
-            <p class="intro-sub">identidad, editorial, packaging y fotografía. unas cuantas, abajo ↓</p>
+        <!-- HERO -->
+        <section class="hero shell">
+            <h1 class="hello"><span>ho</span><svg class="hello-l" viewBox="0 0 100 190" aria-hidden="true"><path d="M46 184 C40 138 44 92 54 58 C60 36 60 14 70 14 C80 14 78 38 62 44 C52 48 56 90 58 120 C59 150 58 168 58 184" pathLength="1"/></svg><span>a</span><span class="hello-bang">!</span></h1>
+            <p class="hero-intro">
+                Soy <strong>Lucía Montalvo</strong> y este es mi portfolio. Soy diseñadora gráfica
+                especializada en identidad visual, editorial, packaging y fotografía. Pienso cada
+                proyecto desde la estructura, pero dejo que lo manual le ponga el alma. Acá abajo,
+                unas cuantas pruebas de eso.
+            </p>
         </section>
 
-        <section class="portfolio-showcase">
-            
-            <div class="anti-grid-list">
-                 <a href="projects/swing.html" class="project-title-link" data-project-id="swing" data-image="img/swing/tapa.jpg">
-                    <span class="title-text">Revista Swing</span>
-                    <span class="category-tag">Editorial</span>
-                </a>
-                
-                <a href="projects/panetto.html" class="project-title-link" data-project-id="panetto" data-image="img/panetto/portada.jpg">
-                    <span class="title-text">Il Panetto</span>
-                    <span class="category-tag">Identidad Visual</span>
-                </a>
-                
-                <a href="projects/wine.html" class="project-title-link" data-project-id="wine" data-image="img/vinos/swiss.jpg">
-                    <span class="title-text">Wine Labels</span>
-                    <span class="category-tag">Packaging</span>
-                </a>
-                
-                <a href="projects/vinilo.html" class="project-title-link" data-project-id="vinilo" data-image="img/vinilo/manos.jpg">
-                    <span class="title-text">Vinilo</span>
-                    <span class="category-tag">Identidad Visual</span>
-                </a>
-                
-                <a href="projects/salamanca.html" class="project-title-link" data-project-id="salamanca" data-image="img/salamanca/mockup_cuadernos.jpg">
-                    <span class="title-text">Salamanca</span>
-                    <span class="category-tag">Identidad Visual</span>
-                </a>
-                
-                <a href="projects/ecos.html" class="project-title-link" data-project-id="ecos" data-image="img/ecos/ecos_1.jpg">
-                    <span class="title-text">Ecos de luz</span>
-                    <span class="category-tag">Fotografía</span>
-                </a>
-            </div>
-            
-            <div id="media-preview" class="media-container" data-active-id="default"></div>
+        <!-- ARCH STATEMENT -->
+        <section class="arch">
+            <svg class="floral floral--left" viewBox="0 0 220 300" aria-hidden="true">
+                <g transform="translate(110 280)">
+                    <path data-draw pathLength="1" d="M-3 0 C -10 -90 -6 -170 -2 -250 C 0 -180 4 -90 3 0 Z"/>
+                    <path data-draw pathLength="1" transform="rotate(-52)" d="M0 0 C 46 -58 46 -132 0 -150 C -46 -132 -46 -58 0 0 Z"/>
+                    <path data-draw pathLength="1" transform="rotate(-30)" d="M0 0 C 52 -70 50 -158 0 -182 C -50 -158 -52 -70 0 0 Z"/>
+                    <path data-draw pathLength="1" transform="rotate(-12)" d="M0 0 C 44 -66 42 -176 0 -210 C -42 -176 -44 -66 0 0 Z"/>
+                    <path data-draw pathLength="1" transform="rotate(8)"   d="M0 0 C 48 -72 46 -168 0 -198 C -46 -168 -48 -72 0 0 Z"/>
+                    <path data-draw pathLength="1" transform="rotate(28)"  d="M0 0 C 50 -66 48 -150 0 -176 C -48 -150 -50 -66 0 0 Z"/>
+                    <path data-draw pathLength="1" transform="rotate(50)"  d="M0 0 C 44 -56 44 -124 0 -142 C -44 -124 -44 -56 0 0 Z"/>
+                    <circle data-draw pathLength="1" cx="-78" cy="-120" r="13"/>
+                    <circle data-draw pathLength="1" cx="86" cy="-96" r="10"/>
+                    <circle data-draw pathLength="1" cx="54" cy="-210" r="9"/>
+                    <circle data-draw pathLength="1" cx="-44" cy="-224" r="7"/>
+                </g>
+            </svg>
+            <svg class="floral floral--right" viewBox="0 0 220 300" aria-hidden="true">
+                <g transform="translate(110 280)">
+                    <path data-draw pathLength="1" d="M-3 0 C -10 -90 -6 -170 -2 -250 C 0 -180 4 -90 3 0 Z"/>
+                    <path data-draw pathLength="1" transform="rotate(-52)" d="M0 0 C 46 -58 46 -132 0 -150 C -46 -132 -46 -58 0 0 Z"/>
+                    <path data-draw pathLength="1" transform="rotate(-30)" d="M0 0 C 52 -70 50 -158 0 -182 C -50 -158 -52 -70 0 0 Z"/>
+                    <path data-draw pathLength="1" transform="rotate(-12)" d="M0 0 C 44 -66 42 -176 0 -210 C -42 -176 -44 -66 0 0 Z"/>
+                    <path data-draw pathLength="1" transform="rotate(8)"   d="M0 0 C 48 -72 46 -168 0 -198 C -46 -168 -48 -72 0 0 Z"/>
+                    <path data-draw pathLength="1" transform="rotate(28)"  d="M0 0 C 50 -66 48 -150 0 -176 C -48 -150 -50 -66 0 0 Z"/>
+                    <path data-draw pathLength="1" transform="rotate(50)"  d="M0 0 C 44 -56 44 -124 0 -142 C -44 -124 -44 -56 0 0 Z"/>
+                    <circle data-draw pathLength="1" cx="-78" cy="-120" r="13"/>
+                    <circle data-draw pathLength="1" cx="86" cy="-96" r="10"/>
+                    <circle data-draw pathLength="1" cx="54" cy="-210" r="9"/>
+                    <circle data-draw pathLength="1" cx="-44" cy="-224" r="7"/>
+                </g>
+            </svg>
+            <p class="arch-title">diseño <b>creativo</b>, <b>estratégico</b> y <b>personal</b></p>
+        </section>
 
+        <!-- PORTFOLIO CAROUSEL -->
+        <section class="work" id="portfolio">
+            <div class="shell">
+                <div class="work-head" data-reveal>
+                    <h2>proyectos seleccionados</h2>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn" data-carousel-prev aria-label="Anterior">←</button>
+                        <button class="carousel-btn" data-carousel-next aria-label="Siguiente">→</button>
+                    </div>
+                </div>
+
+                <div class="carousel" data-carousel>
+                <a class="work-card" href="projects/panetto.html">
+                    <img src="img/panetto/portada.jpg" alt="Il Panetto">
+                    <div class="work-card__body">
+                        <span class="work-card__tag">Identidad visual</span>
+                        <span class="work-card__title">Il Panetto</span>
+                        <span class="btn-pill">ver más →</span>
+                    </div>
+                </a>
+                <a class="work-card" href="projects/vinilo.html">
+                    <img src="img/vinilo/manos.jpg" alt="Vinilo">
+                    <div class="work-card__body">
+                        <span class="work-card__tag">Identidad visual</span>
+                        <span class="work-card__title">Vinilo</span>
+                        <span class="btn-pill">ver más →</span>
+                    </div>
+                </a>
+                <a class="work-card" href="projects/ecos.html">
+                    <img src="img/ecos/ecos_1.jpg" alt="Ecos de luz">
+                    <div class="work-card__body">
+                        <span class="work-card__tag">Fotografía</span>
+                        <span class="work-card__title">Ecos de luz</span>
+                        <span class="btn-pill">ver más →</span>
+                    </div>
+                </a>
+                <a class="work-card" href="projects/wine.html">
+                    <img src="img/vinos/swiss.jpg" alt="Wine Labels">
+                    <div class="work-card__body">
+                        <span class="work-card__tag">Packaging</span>
+                        <span class="work-card__title">Wines</span>
+                        <span class="btn-pill">ver más →</span>
+                    </div>
+                </a>
+                <a class="work-card" href="projects/swing.html">
+                    <img src="img/swing/tapa.jpg" alt="Revista Swing">
+                    <div class="work-card__body">
+                        <span class="work-card__tag">Editorial</span>
+                        <span class="work-card__title">Revista Swing</span>
+                        <span class="btn-pill">ver más →</span>
+                    </div>
+                </a>
+                <a class="work-card" href="projects/salamanca.html">
+                    <img src="img/salamanca/mockup_cuadernos.jpg" alt="Salamanca">
+                    <div class="work-card__body">
+                        <span class="work-card__tag">Identidad visual</span>
+                        <span class="work-card__title">Salamanca</span>
+                        <span class="btn-pill">ver más →</span>
+                    </div>
+                </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- MANIFESTO + SIGNATURE -->
+        <section class="manifesto shell">
+            <div class="manifesto-grid">
+                <div data-reveal>
+                    <p class="manifesto-lead">
+                        El diseño no es solo lo que se ve, es lo que se siente: una <b>locura ordenada</b>
+                        donde conviven la estructura y lo manual.
+                    </p>
+                    <p class="manifesto-body">
+                        Busco que el orden y la prolijidad de las composiciones tipográficas convivan con el
+                        carácter único de lo hecho a mano. No es perfección digital, es honrar el proceso
+                        artesanal y darle al diseño un alma propia.
+                    </p>
+                </div>
+                <div class="signature" data-reveal>
+                    lucía<span>montalvo</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHOTO MOSAIC -->
+        <section class="mosaic shell">
+            <div class="mosaic-grid">
+                <figure class="m-a" data-reveal><img src="img/ecos/ecos_5.jpg" alt="Fotografía Ecos de luz" loading="lazy"></figure>
+                <figure class="m-b" data-reveal><img src="img/vinilo/poster.jpg" alt="Póster Vinilo" loading="lazy"></figure>
+                <figure class="m-c" data-reveal><img src="img/swing/tapa_nina_mosaico.jpg" alt="Mosaico Revista Swing" loading="lazy"></figure>
+                <figure class="m-d" data-reveal><img src="img/ecos/ecos_2.jpg" alt="Fotografía Ecos de luz" loading="lazy"></figure>
+                <figure class="m-e" data-reveal><img src="img/ecos/ecos_4.jpg" alt="Fotografía Ecos de luz" loading="lazy"></figure>
+                <figure class="m-f" data-reveal><img src="img/ecos/ecos_7.jpg" alt="Fotografía Ecos de luz" loading="lazy"></figure>
+            </div>
         </section>
 
     </main>
-    
+
+    <footer class="site-footer">
+        <div class="shell footer-grid">
+            <p class="footer-name">lucía <b>montalvo</b></p>
+            <nav class="footer-links" aria-label="Enlaces de pie">
+                <a href="servicios.html">servicios</a>
+                <a href="contact.html">contacto</a>
+                <a href="https://instagram.com/portfolio.lucia" target="_blank" rel="noopener">@portfolio.lucia</a>
+                <a href="https://www.behance.net/lumontalvo" target="_blank" rel="noopener">Behance</a>
+            </nav>
+            <p class="footer-copy">© 2026 Lucía Montalvo · Diseño gráfico — identidad, editorial, packaging y fotografía.</p>
+        </div>
+    </footer>
+
     <script src="app.js"></script>
 </body>
 </html>
