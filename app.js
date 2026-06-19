@@ -164,6 +164,9 @@ function initArch() {
 
         if (REDUCE_MOTION) { setFinal(); return; }
 
+        // Lock height to the fully wrapped lines so florals don't shift while typing.
+        title.style.minHeight = `${title.offsetHeight}px`;
+
         title.innerHTML = '';
         const nodes = segs.map((s) => {
             const n = document.createElement(s.b ? 'b' : 'span');

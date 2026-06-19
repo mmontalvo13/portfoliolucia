@@ -247,6 +247,7 @@ ul { list-style: none; }
     letter-spacing: -0.02em;
     max-width: 16ch;
     margin-inline: auto;
+    min-height: calc(3 * 1.05em);
 }
 .arch-title b { font-weight: 500; color: var(--accent-bright); }
 
