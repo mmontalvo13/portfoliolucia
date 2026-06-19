@@ -26,24 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
     markActiveNav();
     initNavInteraction();
     initArch();
-    initHeroL();
     initCursorTrail();
 });
-
-/* ===================================================================
-   Hero "hola!": draw the looping "l" once the intro has cleared
-   =================================================================== */
-function initHeroL() {
-    const svg = document.querySelector('.hello-l');
-    if (!svg) return;
-    const path = svg.querySelector('path');
-    if (REDUCE_MOTION) { if (path) path.style.strokeDashoffset = '0'; return; }
-
-    const isIntro = document.querySelector('[data-veil]') &&
-        !document.documentElement.classList.contains('veil-skip');
-    const delay = isIntro ? 2350 : 380;
-    setTimeout(() => svg.classList.add('draw'), delay);
-}
 
 /* ===================================================================
    1. First-load veil + animated "hola" intro
@@ -61,8 +45,7 @@ function initLoader() {
     const rich = veil.querySelector('.intro-hola');
     veil.classList.add('is-intro');
     const reveal = () => veil.classList.add('is-open');
-    // Give the drawn "l" time to be seen on the homepage intro.
-    const delay = REDUCE_MOTION ? 0 : (rich ? 2100 : 680);
+    const delay = REDUCE_MOTION ? 0 : (rich ? 1000 : 680);
 
     let revealed = false;
     const go = () => { if (!revealed) { revealed = true; setTimeout(reveal, delay); } };
@@ -150,7 +133,7 @@ function initNavInteraction() {
 }
 
 /* ===================================================================
-   6. Arch: draw the florals + typewriter the centre statement
+   6. Arch: typewriter the centre statement
    =================================================================== */
 function initArch() {
     const arch = document.querySelector('.arch');
