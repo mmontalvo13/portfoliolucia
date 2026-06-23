@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /contact.html
 
 Sitemap: https://luciamontalvo.com/sitemap.xml
